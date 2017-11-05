@@ -45,7 +45,7 @@ module Listener
 
     def retrieve
       push = @client.pushes.first
-      if push.body['title'] == 'Google Assistant Commands' && Time.now - push.created < 60 && push.body['iden'] != @last_iden
+      if push.body['title'] == 'Google Assistant Commands' && Time.now - push.created < 300 && push.body['iden'] != @last_iden
         @on_message.each{|h| h.call(push.body['body']) }
         @last_iden = push.body['iden']
         push.update(:client => @client, :params => {:dismissed => true})
