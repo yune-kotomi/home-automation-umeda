@@ -1,0 +1,14 @@
+---
+- :name: Kiss FM KOBEを再生
+  :keywords:
+  - kiss fm
+  - キッス エフエム
+  :command: google-chrome 'http://radiko.jp/#!/live/KISSFMKOBE' &
+
+- :name: PCサスペンド
+  :keywords:
+  - PC サスペンド
+  - PC 止め
+  - PC 停止
+  - PC 消し
+  :command: sudo systemctl suspend -i
