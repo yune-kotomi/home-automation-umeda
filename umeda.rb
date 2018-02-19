@@ -1,5 +1,6 @@
 require_relative 'listener/pushbullet'
 require_relative 'executer/command'
+require_relative 'executer/radiko'
 require 'yaml'
 
 if ARGV.empty?
@@ -9,12 +10,14 @@ else
 
   EM.run do
     listeners = [Listener::Pushbullet.new]
-    executer = Executer::Command.new(conf)
+    command_executer = Executer::Command.new(conf)
+    radiko_executer = Executer::Radiko.new(conf)
 
     listeners.each do |l|
       l.on_message do |message|
         puts "受信: #{message}"
-        executer.execute(message)
+        command_executer.execute(message)
+        radiko_executer.execute(message)
       end
     end
   end
